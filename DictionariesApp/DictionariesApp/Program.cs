@@ -8,33 +8,54 @@ namespace DictionariesApp
     {
         public static void Main(string[] args)
         {
+            //initialize
             List<int> studentIDList = new List<int>();
             List<string> studentNamesList = new List<string>();
 
             List<Dictionary<int, string>> studentsAndIds = new List<Dictionary<int, string>>();
             
-            string idInput;
-            bool validID = false;
+            bool allIds = false;
 
             Console.WriteLine("Welcome!");
 
-
+            //User input valid student name into the studentIDList
             do
             {
-                Console.WriteLine("Enter the student ID (or ENTER to finish):");
-                idInput = Console.ReadLine();
-                bool convertId = int.TryParse(idInput, out int studentID);
+                //Take user input
+                Console.WriteLine("Enter student IDs (Once finished, enter 'next' to begin adding names):");
+                string idInput = Console.ReadLine();
+                
+                //if user is finished, exit loop and enter loop for student name. 
+                if (idInput.Equals("next", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    break;
+                }
 
-                if (convertId && idInput.Length > 2)
+                // if user did not enter 'next', convert the input string to int.
+                bool convertId = int.TryParse(idInput, out int studentID);
+                
+                //if the input is a valid number and isn't in the list, add.
+                if (convertId && idInput.Length > 1 & !studentIDList.Contains(studentID))
                 {
                     studentIDList.Add(studentID);
-                    validID = true;
-                    Console.WriteLine("The inner if works! :D ");
+                }
+                else if (studentIDList.Contains(studentID))
+                {
+                    Console.WriteLine("**This ID has already been entered, enter a new ID or enter 'next' to enter names.\n");
+                }
+                else
+                {
+                    Console.WriteLine("**Please enter a valid student ID number.**\n");
                 }
 
             }
-            while (validID == false);
+            while (allIds == false);
 
+            Console.WriteLine("\n");
+            foreach (int printStudentID in studentIDList)
+            {
+                Console.WriteLine(printStudentID);
+            }
 
 
             /*
