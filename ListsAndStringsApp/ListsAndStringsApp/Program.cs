@@ -8,7 +8,7 @@ namespace ListsAndStringsApp
         static void Main(string[] args)
         {
             //initialize list
-            List<string> wordList = new List<string>(new string[] {"Let", "Word", "Chunk", "Tree", "AC", "Laptop"});
+            List<string> wordList = new List<string>(new string[] {"Let", "Word", "Chunk", "Tree", "AC", "CSharp", "Laptop"});
             
             foreach (string word in wordList)
             {
