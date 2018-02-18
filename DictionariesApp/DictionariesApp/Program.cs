@@ -51,38 +51,41 @@ namespace DictionariesApp
             }
             while (allIds == false);
 
+            //--------------
+
+            //Formatting to add space 
             Console.WriteLine("\n");
-            foreach (int printStudentID in studentIDList)
+
+            Console.WriteLine("Enter the corresponding student names:");
+
+
+            //User inputs valid student name into the studentIDList
+            foreach (int idNumber in studentIDList)
             {
-                Console.WriteLine(printStudentID);
+                Console.WriteLine($"Enter the name of student "+ idNumber);
+                string studentName = Console.ReadLine();
+
+                while (String.IsNullOrEmpty(studentName) & studentName.Length < 1)
+                {
+                    Console.WriteLine("***Please enter a valid student name*** \n");
+                    Console.WriteLine($"Enter the name of student " + idNumber);
+                    studentName = Console.ReadLine();
+                }
+
+                studentNamesList.Add(studentName);
             }
 
-
-            /*
-        foreach (Dictionary<int, string> dict in studentIDList)
-        {
-            Console.WriteLine("Enter the student ID (or ENTER to finish):");
-            idInput = Console.ReadLine();
-            int studentID = Int32.Parse(idInput);
-            do
+           
+            //Formatting to add space 
+            Console.WriteLine("\n");
+            
+            //prints out the id & student names
+            for (int i = 0; i < studentIDList.Count; i++)
             {
-                //isNum = int.TryParse(idInput, out int studentID);
-
-                if (idInput.Length > 2)
-                {
-                    dict.Add(studentID, null);
-                    validID = true;
-                    Console.WriteLine("inner if works! :D ");
-                }
-
-
-                 Console.WriteLine("this ran in the do while loop");
-                }
-            while (validID == false);
-        }
-        */
-
-        Console.ReadLine();
+                Console.WriteLine($"ID:{studentIDList[i]}, Name: {studentNamesList[i]}");
+            }
+            
+            Console.ReadLine();
         }
     }
 }
